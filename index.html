@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Какой цвет интерьера вам ближе?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Какой цвет интерьера вам ближе?</h1>
+
+        {% if voted %}
+        <p><strong>Вы уже голосовали в этом опросе.</strong></p>
+        <p><a href="{{ url_for('results') }}">Посмотреть результаты</a></p>
+        {% else %}
+        <form method="post" action="{{ url_for('vote') }}">
+            {% for option in options %}
+            <label>
+                <input type="radio" name="option" value="{{ option.id }}" />
+                {{ option.title }}
+            </label><br />
+            {% endfor %}
+            <br />
+            <button type="submit">Проголосовать</button>
+        </form>
+        <p><a href="{{ url_for('results') }}">Посмотреть результаты</a></p>
+        {% endif %}
+    </div>
+</body>
+
+</html>

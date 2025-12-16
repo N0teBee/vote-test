@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Результаты голосования</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Результаты голосования</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Вариант</th>
+                    <th>Голосов</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for option in options %}
+                <tr>
+                    <td>{{ option.title }}</td>
+                    <td>{{ option.votes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p>
+            <a href="{{ url_for('index') }}">Вернуться к голосованию</a>
+        </p>
+    </div>
+</body>
+
+</html>
